@@ -1,0 +1,26 @@
+datetime_cols:
+  - customer_churned_at
+  - customer_started_at
+
+num_cols: 
+  - days_to_churn
+  - product_x
+  - product_y
+
+cat_cols: 
+  - product
+  - channel
+  - age_bucket
+  - operating_system
+
+ohe_cols:
+  - is_xs
+
+target: is_churn
+
+train_test_ratio: 0.2
+SEED: 42
+
+xgb_parameters:
+  n_estimators: [400, 500, 600]
+  max_depth: [4, 5, 6]

@@ -1,0 +1,62 @@
+# Here you can define all your data sets by using simple YAML syntax.
+#
+# Documentation for this file format can be found in "The Data Catalog"
+# Link: https://docs.kedro.org/en/stable/data/data_catalog.html
+
+base:
+  type: pandas.CSVDataSet
+  filepath: data/01_raw/case_study_base_anon.csv
+  load_args:
+    sep: ","
+
+xs:
+  type: pandas.CSVDataSet
+  filepath: data/01_raw/case_study_xs_anon.csv
+  load_args:
+    sep: ","
+
+pre_processed_df:
+  type: pandas.CSVDataSet
+  filepath: data/02_intermediate/pre_processed_df.csv
+  load_args:
+    sep: ","
+
+features_df:
+  type: pandas.CSVDataSet
+  filepath: data/03_feature/features_df.csv
+  load_args:
+    sep: ","
+
+X:
+  type: pandas.CSVDataSet
+  filepath: data/04_model_input/X.csv
+
+y:
+  type: pandas.CSVDataSet
+  filepath: data/04_model_input/y.csv
+
+X_train:
+  type: pandas.CSVDataSet
+  filepath: data/04_model_input/X_train.csv
+
+X_test:
+  type: pandas.CSVDataSet
+  filepath: data/04_model_input/X_test.csv
+
+y_train:
+  type: pandas.CSVDataSet
+  filepath: data/04_model_input/y_train.csv
+
+y_test:
+  type: pandas.CSVDataSet
+  filepath: data/04_model_input/y_test.csv
+
+survival_model:
+  type: pickle.PickleDataSet
+  filepath: data/06_models/survival_model.pkl
+  backend: pickle
+
+trained_classifier_pipeline:
+  type: pickle.PickleDataSet
+  filepath: data/06_models/trained_classifier_pipeline.pkl
+  backend: pickle
