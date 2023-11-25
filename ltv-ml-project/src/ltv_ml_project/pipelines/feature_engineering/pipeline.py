@@ -8,10 +8,12 @@ from .nodes import make_feature_engineering
 
 
 def create_pipeline(**kwargs) -> Pipeline:
-    return pipeline([
-        node(
-            func=make_feature_engineering,
-            inputs="pre_processed_df",
-            outputs="features_df",
-        )
-    ])
+    return pipeline(
+        [
+            node(
+                func=make_feature_engineering,
+                inputs="pre_processed_df",
+                outputs="features_df",
+            )
+        ]
+    )

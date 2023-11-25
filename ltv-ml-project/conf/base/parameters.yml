@@ -24,3 +24,5 @@ SEED: 42
 xgb_parameters:
   n_estimators: [400, 500, 600]
   max_depth: [4, 5, 6]
+
+survival_threshold: 0.7

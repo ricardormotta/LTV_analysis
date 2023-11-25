@@ -7,8 +7,9 @@ import pandas as pd
 
 
 def pre_process_data(base, xs, datetime_cols):
-
-    base.loc[:, "operating_system"] = base["operating_system"].replace({"iPadOS": "iOS", "iPhone OS": "iOS"})
+    base.loc[:, "operating_system"] = base["operating_system"].replace(
+        {"iPadOS": "iOS", "iPhone OS": "iOS"}
+    )
 
     xs = pd.merge(
         xs,
@@ -17,15 +18,13 @@ def pre_process_data(base, xs, datetime_cols):
         right_index=True,
     )
 
-    grouped_xs = xs.groupby("user_id").sum()[["commission", "product_x", "product_y"]].reset_index()
-
-    df = pd.merge(
-        base,
-        grouped_xs,
-        on="user_id",
-        how="left",
-        suffixes=["_base", "_xs"]
+    grouped_xs = (
+        xs.groupby("user_id")
+        .sum()[["commission", "product_x", "product_y"]]
+        .reset_index()
     )
+
+    df = pd.merge(base, grouped_xs, on="user_id", how="left", suffixes=["_base", "_xs"])
     for col in datetime_cols:
         df.loc[:, col] = pd.to_datetime(df[col], errors="coerce", utc=False)
 

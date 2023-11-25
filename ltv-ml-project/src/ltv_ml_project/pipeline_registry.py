@@ -3,8 +3,12 @@ from __future__ import annotations
 
 from kedro.framework.project import find_pipelines
 from kedro.pipeline import Pipeline
-from ltv_ml_project.pipelines.data_preprocessing import create_pipeline as data_preprocessing
-from ltv_ml_project.pipelines.feature_engineering import create_pipeline as feature_engineering
+from ltv_ml_project.pipelines.data_preprocessing import (
+    create_pipeline as data_preprocessing,
+)
+from ltv_ml_project.pipelines.feature_engineering import (
+    create_pipeline as feature_engineering,
+)
 from ltv_ml_project.pipelines.data_science import create_pipeline as data_science
 
 
