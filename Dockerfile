@@ -10,6 +10,7 @@ RUN pip3 install -r requirements.txt
 COPY . .
 # WORKDIR ./ltv-ml-project
 # RUN kedro run
+RUN gcloud auth activate-service-account ACCOUNT --key-file=ltv-ml-project/conf/local/ltv-analysis-406313-7bac47acc42e.json
 
 EXPOSE 8080
 
