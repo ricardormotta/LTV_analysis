@@ -16,5 +16,5 @@ EXPOSE 8080
 # Expose the port your Kedro application runs on (if needed)
 # Command to run your Kedro project
 ENV GOOGLE_APPLICATION_CREDENTIALS=./ltv-ml-project/conf/local/ltv-analysis-406313-7bac47acc42e.json
-WORKDIR /prediction_app/streamlit
-ENTRYPOINT ["streamlit", "run", "main.py", "--server.port=8080", "--server.address=0.0.0.0"]
+WORKDIR .
+ENTRYPOINT ["streamlit", "run", "/prediction_app/streamlit/main.py", "--server.port=8080", "--server.address=0.0.0.0"]
