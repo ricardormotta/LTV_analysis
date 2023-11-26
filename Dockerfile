@@ -20,4 +20,4 @@ EXPOSE 8080
 # Command to run your Kedro project
 env GOOGLE_APPLICATION_CREDENTIALS=./ltv-ml-project/conf/local/ltv-analysis-406313-7bac47acc42e.json
 workdir .
-cmd streamlit run /prediction_app/streamlit/main.py --server.port=8080
+cmd streamlit run --server.port 8080 --server.enableCORS false /prediction_app/streamlit/main.py
