@@ -7,7 +7,7 @@ sys.path.append("..")
 from start_kedro_session import get_kedro_catalog, get_kedro_project_path
 from predict_utils import predict_from_survival_model
 from secret_manager_helper import get_secret_as_json
-project_id = 'ltv-analysis-406313'
+project_id = 'ltv-analysis'
 secret_id = 'ltv_service_account'
 kedro_project_path = get_kedro_project_path()
 get_secret_as_json(

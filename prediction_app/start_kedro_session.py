@@ -4,10 +4,10 @@ from kedro.framework.session import KedroSession
 from kedro.framework.startup import bootstrap_project
 
 # Create a Kedro context
+kedro_project_name = "ltv-ml-project"
 
 def get_kedro_project_path():
     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    kedro_project_name = "ltv-ml-project"
     project_path = os.path.join(base_dir, kedro_project_name)
     return project_path
 
