@@ -12,7 +12,7 @@ secret_id = 'ltv_service_account'
 kedro_project_path = get_kedro_project_path()
 st.title("LTV Analysis")
 
-token_path = os.path.join(kedro_project_path, "conf", "local", "gcp_token")
+token_path = os.path.join(kedro_project_path, "conf", "local", "gcp_token.json")
 token_saved = get_secret_as_json(
         project_id,
         secret_id,
