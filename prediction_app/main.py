@@ -54,7 +54,7 @@ op_system = st.selectbox(
 )
 base_product = st.selectbox("Base Product", ("product_a", "product_b", "product_c"))
 base_commission = st.number_input("Base commission", value=0)
-client_since_days = st.number_input("Cliente since (days)", value=0)
+client_since_days = st.number_input("Client since (days)", value=0)
 product_x = st.select_slider(
     "Number of purchases of Product X", range(0, 6, 1), value=0
 )
@@ -91,9 +91,9 @@ if st.button("Run Prediction"):
 
     will_churn = "Yes" if bool(prediction[0]) else "No"
     st.header("Models' outputs:")
-    st.write(f"\tWill this cliente churn? {will_churn}")
+    st.write(f"\tWill this client churn? {will_churn}")
     st.write(f"\tPredicted probability of churn: {proba}")
     st.write(f"\tPredicted days to churn: {days_to_churn}")
-    st.write(f"\tThis cliente was assigned to cluster {cluster}")
+    st.write(f"\tThis client was assigned to cluster {cluster}")
     st.write(f"\tThis cluster has the following most important features:")
     st.dataframe(cluster_features)
