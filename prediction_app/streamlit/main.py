@@ -16,10 +16,11 @@ cat_features = catalog.load("params:cat_cols")
 
 
 # Streamlit app begins here
-st.title('LTV Analysis')
-st.text('Author: Ricardo Motta')
+st.title("LTV Analysis")
+st.text("Author: Ricardo Motta")
 
-st.markdown('''
+st.markdown(
+    """
     This app intents to show you the results of the LTV Analysis developed by the Author.
 
     The source code can be found at [https://github.com/ricardormotta/LTV_analysis](https://github.com/ricardormotta/LTV_analysis)
@@ -34,17 +35,30 @@ st.markdown('''
     [https://fastapi.tiangolo.com/](https://fastapi.tiangolo.com/)
     
     You can also run predictions using the interface below. Try it out!
-''')
+"""
+)
 # Sidebar for user input
-st.header('Model testing')
-channel = st.selectbox('Channel', ('channel_a', 'channel_b'))
-age = st.selectbox("Age group", ('18-24', '25-29', '30-34', '35-39', '40-44', '45-49', '50-54', '55+'))
-op_system = st.selectbox("Operating system", ("iOS","Android",))
+st.header("Model testing")
+channel = st.selectbox("Channel", ("channel_a", "channel_b"))
+age = st.selectbox(
+    "Age group", ("18-24", "25-29", "30-34", "35-39", "40-44", "45-49", "50-54", "55+")
+)
+op_system = st.selectbox(
+    "Operating system",
+    (
+        "iOS",
+        "Android",
+    ),
+)
 base_product = st.selectbox("Base Product", ("product_a", "product_b", "product_c"))
 base_commission = st.number_input("Base commission", value=0)
 client_since_days = st.number_input("Cliente since (days)", value=0)
-product_x = st.select_slider("Number of purchases of Product X", range(0,6,1), value=0)
-product_y = st.select_slider("Number of purchases of Product Y", range(0,6,1), value=0)
+product_x = st.select_slider(
+    "Number of purchases of Product X", range(0, 6, 1), value=0
+)
+product_y = st.select_slider(
+    "Number of purchases of Product Y", range(0, 6, 1), value=0
+)
 is_xs = False
 # Add more input features as needed
 inputs = {
@@ -59,15 +73,17 @@ inputs = {
     "days_to_churn": [client_since_days],
 }
 # Button to trigger prediction
-if st.button('Run Prediction'):
-    if product_x+product_y>0:
-        is_xs=True
+if st.button("Run Prediction"):
+    if product_x + product_y > 0:
+        is_xs = True
     data = pd.DataFrame.from_dict(inputs, orient="index").T
     print(data.head())
     input_features = []  # Gather input features
-    proba = classifier.predict_proba(data)[0,1]
+    proba = classifier.predict_proba(data)[0, 1]
     prediction = classifier.predict(data)
-    days_to_churn = predict_from_survival_model(data, survival_model, cat_features, survival_threshold)
+    days_to_churn = predict_from_survival_model(
+        data, survival_model, cat_features, survival_threshold
+    )
     will_churn = "Yes" if bool(prediction[0]) else "No"
     st.header("Models' outputs:")
     st.write(f"\tWill this cliente churn? {will_churn}")

@@ -19,6 +19,7 @@ import lifelines
 
 set_config(transform_output="pandas")
 
+
 def split_X_y(
     df,
     cat_cols,
@@ -56,11 +57,16 @@ def train_survival_model(X, y, cat_cols):
 def create_column_transformer(cat_cols, num_cols):
     CT = ColumnTransformer(
         [
-            ("categorical", OneHotEncoder(handle_unknown="ignore", sparse_output=False), cat_cols),
+            (
+                "categorical",
+                OneHotEncoder(handle_unknown="ignore", sparse_output=False),
+                cat_cols,
+            ),
             ("numerical", StandardScaler(), num_cols),
         ]
     )
     return CT
+
 
 def train_classification_model(X_train, y_train, CT, hyper_parameters):
     xgb = XGBClassifier()
@@ -71,8 +77,8 @@ def train_classification_model(X_train, y_train, CT, hyper_parameters):
 
 
 def train_clustering_model(X_train, CT, hyper_parameters):
-    k=hyper_parameters["k"]
-    n_splits=hyper_parameters["n_splits"]
+    k = hyper_parameters["k"]
+    n_splits = hyper_parameters["n_splits"]
     kf = KFold(n_splits=n_splits, shuffle=True)
     kmeans = KMeans(n_clusters=k)
     pipe = Pipeline([("CT", CT), ("model", kmeans)])

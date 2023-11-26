@@ -44,7 +44,7 @@ def create_pipeline(**kwargs) -> Pipeline:
                     "params:cat_cols",
                     "params:num_cols",
                 ],
-                outputs="CT"
+                outputs="CT",
             ),
             node(
                 func=train_classification_model,
@@ -58,12 +58,8 @@ def create_pipeline(**kwargs) -> Pipeline:
             ),
             node(
                 func=train_clustering_model,
-                inputs=[
-                    "X_train",
-                    "CT",
-                    "params:kfold_parameters"
-                ],
-                outputs="trained_kfolds"
-            )
+                inputs=["X_train", "CT", "params:kfold_parameters"],
+                outputs="trained_kfolds",
+            ),
         ]
     )
