@@ -19,6 +19,9 @@ catalog = get_kedro_catalog()
 classifier = catalog.load("trained_classifier_pipeline")
 survival_model = catalog.load("survival_model")
 survival_threshold = catalog.load("params:survival_threshold")
+clusterer = catalog.load("trained_kfolds")
+cluster_feature_importances = catalog.load("cluster_centroids")
+
 cat_features = catalog.load("params:cat_cols")
 app = FastAPI()
 
@@ -46,4 +49,10 @@ def predict(data: InputData):
     days_to_churn = predict_from_survival_model(
         data, survival_model, cat_features, survival_threshold
     )
-    return {"prediction": prediction, "predicted_days_to_churn": days_to_churn}
+    cluster = clusterer.predict(data)
+    cluster_features = cluster_feature_importances[cluster].to_json(orient="values")
+    return {
+        "prediction": prediction,
+        "predicted_days_to_churn": days_to_churn,
+        "cluster_centroid_feature_importances": cluster_features
+        }

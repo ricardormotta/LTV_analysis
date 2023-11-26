@@ -31,7 +31,7 @@ kfold_parameters:
 
 survival_threshold: 0.7
 
-top_n_features: 3
+top_n_features: 5
 
 max_clusters: 10
 n_splits: 5

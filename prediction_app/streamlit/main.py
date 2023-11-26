@@ -13,6 +13,8 @@ survival_model = catalog.load("survival_model")
 survival_threshold = catalog.load("params:survival_threshold")
 train_cols_surv_model = survival_model.variance_matrix_.columns
 cat_features = catalog.load("params:cat_cols")
+clusterer = catalog.load("trained_kfolds")
+cluster_feature_importances = catalog.load("cluster_centroids")
 
 
 # Streamlit app begins here
@@ -84,8 +86,14 @@ if st.button("Run Prediction"):
     days_to_churn = predict_from_survival_model(
         data, survival_model, cat_features, survival_threshold
     )
+    cluster = clusterer.predict(data)[0]
+    cluster_features = cluster_feature_importances[cluster]
+
     will_churn = "Yes" if bool(prediction[0]) else "No"
     st.header("Models' outputs:")
     st.write(f"\tWill this cliente churn? {will_churn}")
     st.write(f"\tPredicted probability of churn: {proba}")
     st.write(f"\tPredicted days to churn: {days_to_churn}")
+    st.write(f"\tThis cliente was assigned to cluster {cluster}")
+    st.write(f"\tThis cluster has the following most important features:")
+    st.dataframe(cluster_features)

@@ -114,7 +114,7 @@ def get_top_cluster_features(data, _pipe, top_n_features):
         feature_names = _pipe[0].get_feature_names_out()[top_indices]
         feature_importance = centroid[top_indices]
 
-        cluster_features[f"{cluster}"] = pd.DataFrame(
+        cluster_features[cluster] = pd.DataFrame(
             {"Features": feature_names, "Importance": feature_importance}
         )
 
