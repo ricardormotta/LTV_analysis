@@ -11,6 +11,7 @@ from ltv_ml_project.pipelines.feature_engineering import (
 )
 from ltv_ml_project.pipelines.data_science import create_pipeline as data_science
 
+from ltv_ml_project.pipelines.compute_metrics import create_pipeline as compute_metrics
 
 def register_pipelines() -> dict[str, Pipeline]:
     """Register the project's pipelines.

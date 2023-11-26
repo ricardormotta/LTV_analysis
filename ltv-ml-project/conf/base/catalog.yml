@@ -51,6 +51,12 @@ y_test:
   type: pandas.CSVDataSet
   filepath: data/04_model_input/y_test.csv
 
+CT:
+  type: pickle.PickleDataSet
+  filepath: data/06_models/CT.pkl
+  backend: pickle
+
+
 survival_model:
   type: pickle.PickleDataSet
   filepath: data/06_models/survival_model.pkl
@@ -59,4 +65,27 @@ survival_model:
 trained_classifier_pipeline:
   type: pickle.PickleDataSet
   filepath: data/06_models/trained_classifier_pipeline.pkl
+  backend: pickle
+
+trained_kfolds:
+  type: pickle.PickleDataSet
+  filepath: data/06_models/trained_kfolds.pkl
+  backend: pickle
+
+
+classification_metrics: 
+  type: matplotlib.MatplotlibWriter
+  filepath: data/08_reporting/classification_metrics.png
+  save_args:
+    format: png
+
+elbow_curve: 
+  type: matplotlib.MatplotlibWriter
+  filepath: data/08_reporting/elbow_curve.png
+  save_args:
+    format: png
+
+cluster_centroids:
+  type: pickle.PickleDataSet
+  filepath: data/08_reporting/cluster_centroids.pkl
   backend: pickle

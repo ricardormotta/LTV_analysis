@@ -25,4 +25,13 @@ xgb_parameters:
   n_estimators: [400, 500, 600]
   max_depth: [4, 5, 6]
 
+kfold_parameters:
+  k: 6
+  n_splits: 5
+
 survival_threshold: 0.7
+
+top_n_features: 3
+
+max_clusters: 10
+n_splits: 5
