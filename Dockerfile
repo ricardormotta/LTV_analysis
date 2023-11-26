@@ -10,6 +10,11 @@ RUN pip3 install -r requirements.txt
 COPY . .
 # WORKDIR ./ltv-ml-project
 # RUN kedro run
+# Install and initialize Google Cloud client
+RUN curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-435.0.1-linux-x86_64.tar.gz
+RUN tar -xf google-cloud-cli-435.0.1-linux-x86_64.tar.gz
+RUN /google-cloud-sdk/install.sh
+ENV PATH="$PATH:/google-cloud-sdk/bin"
 
 EXPOSE 8080
 
