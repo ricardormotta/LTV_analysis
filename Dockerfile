@@ -16,4 +16,4 @@ EXPOSE 8080
 # Expose the port your Kedro application runs on (if needed)
 # Command to run your Kedro project
 WORKDIR .
-ENTRYPOINT ["streamlit", "run", "/prediction_app/streamlit/main.py", "--server.port=8080", "--server.address=0.0.0.0"]
+ENTRYPOINT ["streamlit", "run", "/prediction_app/main.py", "--server.port=8080", "--server.address=0.0.0.0"]
