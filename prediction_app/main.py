@@ -18,10 +18,6 @@ token_saved = get_secret_as_json(
         secret_id,
         token_path
 )
-if token_saved is True:
-    st.text(f"token saved in {token_path}")
-else:
-    st.text(token_saved)
 
 catalog = get_kedro_catalog()
 classifier = catalog.load("trained_classifier_pipeline")
