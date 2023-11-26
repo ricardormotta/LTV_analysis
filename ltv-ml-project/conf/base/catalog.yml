@@ -63,46 +63,46 @@ y_test:
 
 CT:
   type: pickle.PickleDataSet
-  filepath: gs://ltv_analysis_data/data/06_models/CT.pkl
+  filepath: data/06_models/CT.pkl
   credentials: gcp_credentials
   backend: pickle
 
 
 survival_model:
   type: pickle.PickleDataSet
-  filepath: gs://ltv_analysis_data/data/06_models/survival_model.pkl
+  filepath: data/06_models/survival_model.pkl
   credentials: gcp_credentials
   backend: pickle
 
 trained_classifier_pipeline:
   type: pickle.PickleDataSet
-  filepath: gs://ltv_analysis_data/data/06_models/trained_classifier_pipeline.pkl
+  filepath: data/06_models/trained_classifier_pipeline.pkl
   credentials: gcp_credentials
   backend: pickle
 
 trained_kfolds:
   type: pickle.PickleDataSet
-  filepath: gs://ltv_analysis_data/data/06_models/trained_kfolds.pkl
+  filepath: data/06_models/trained_kfolds.pkl
   credentials: gcp_credentials
   backend: pickle
 
 
 classification_metrics: 
   type: matplotlib.MatplotlibWriter
-  filepath: gs://ltv_analysis_data/data/08_reporting/classification_metrics.png
+  filepath: data/08_reporting/classification_metrics.png
   credentials: gcp_credentials
   save_args:
     format: png
 
 elbow_curve: 
   type: matplotlib.MatplotlibWriter
-  filepath: gs://ltv_analysis_data/data/08_reporting/elbow_curve.png
+  filepath: data/08_reporting/elbow_curve.png
   credentials: gcp_credentials
   save_args:
     format: png
 
 cluster_centroids:
   type: pickle.PickleDataSet
-  filepath: gs://ltv_analysis_data/data/08_reporting/cluster_centroids.pkl
+  filepath: data/08_reporting/cluster_centroids.pkl
   credentials: gcp_credentials
   backend: pickle
