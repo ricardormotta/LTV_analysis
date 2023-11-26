@@ -12,3 +12,4 @@ xgboost~=2.0.2
 uvicorn~=0.22.0
 gcsfs~=2023.10.0
 gcloud~=0.18.3
+google-cloud-secret-manager

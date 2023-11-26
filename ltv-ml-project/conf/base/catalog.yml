@@ -9,6 +9,8 @@ base:
   credentials: gcp_credentials
   load_args:
     sep: ","
+  fs_args:
+    project: ltv-analysis
 
 xs:
   type: pandas.CSVDataSet
