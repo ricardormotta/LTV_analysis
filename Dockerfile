@@ -9,8 +9,8 @@ RUN pip3 install -r requirements.txt
 # Copy the entire Kedro project into the container
 COPY . .
 
-WORKDIR ./ltv-ml-project
-RUN kedro run
+# WORKDIR ./ltv-ml-project
+# RUN kedro run
 
 workdir .
 
