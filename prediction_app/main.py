@@ -7,15 +7,21 @@ sys.path.append("..")
 from start_kedro_session import get_kedro_catalog, get_kedro_project_path
 from predict_utils import predict_from_survival_model
 from secret_manager_helper import get_secret_as_json
-project_id = 'ltv-analysis'
+project_id = '840195815299'
 secret_id = 'ltv_service_account'
 kedro_project_path = get_kedro_project_path()
-get_secret_as_json(
-    project_id,
-    secret_id,
-    os.path.join(kedro_project_path, "conf", "local", "gcp_token")
-)
+st.title("LTV Analysis")
 
+token_path = os.path.join(kedro_project_path, "conf", "local", "gcp_token")
+token_saved = get_secret_as_json(
+        project_id,
+        secret_id,
+        token_path
+)
+if token_saved is True:
+    st.text(f"token saved in {token_path}")
+else:
+    st.text(token_saved)
 
 catalog = get_kedro_catalog()
 classifier = catalog.load("trained_classifier_pipeline")
@@ -28,7 +34,6 @@ cluster_feature_importances = catalog.load("cluster_centroids")
 
 
 # Streamlit app begins here
-st.title("LTV Analysis")
 st.text("Author: Ricardo Motta")
 
 st.markdown(
