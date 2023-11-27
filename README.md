@@ -1,4 +1,4 @@
-# LTV Analysis Project Documentation 💸
+# LTV Analysis 💸
 
 ## Project Overview
 
