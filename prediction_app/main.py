@@ -29,10 +29,11 @@ cluster_feature_importances = catalog.load("cluster_centroids")
 
 # Streamlit app begins here
 st.text("Author: Ricardo Motta")
+st.text("https://linkedin.com/in/ricardormotta")
 
 st.markdown(
     """
-    This project, developed by [Ricardo Raspini Motta](linkedin.com/in/ricardormotta), focuses on Lifetime Value (LTV) analysis, encompassing churn analysis, LTV prediction, and customer segmentation.
+    This project focuses on Lifetime Value (LTV) analysis, encompassing churn analysis, LTV prediction, and customer segmentation.
 
     The source code can be found at [https://github.com/ricardormotta/LTV_analysis](https://github.com/ricardormotta/LTV_analysis)
             
