@@ -12,6 +12,8 @@ The project includes:
 
 ### Project Structure
 
+
+```
 .
 ├── docs
 ├── ltv-ml-project
@@ -46,6 +48,7 @@ The project includes:
 │               ├── data_science
 │               └── feature_engineering
 └── prediction_app
+```
 
 ## Machine Learning Pipeline
 
