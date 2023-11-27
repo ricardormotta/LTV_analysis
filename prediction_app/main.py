@@ -32,20 +32,11 @@ st.text("Author: Ricardo Motta")
 
 st.markdown(
     """
-    This app intents to show you the results of the LTV Analysis developed by the Author.
+    This project, developed by [Ricardo Raspini Motta](linkedin.com/in/ricardormotta), focuses on Lifetime Value (LTV) analysis, encompassing churn analysis, LTV prediction, and customer segmentation.
 
     The source code can be found at [https://github.com/ricardormotta/LTV_analysis](https://github.com/ricardormotta/LTV_analysis)
             
-    There are 4 subpages in this app, which can be navigated through the side menu:
-    - EDA: Showing the exploratory data analysis
-    - Classification Model: Showing the trained classification model used on churn analysis
-    - Survival Model: Showing the survival analysis to predict the time to churn
-    - Segmentation Model: Showing the segmentation model to predict better cross-selling opportunities
-
-    All those models can be also accessed via an POST request in an API. The documentation of the API can be seen at:
-    [https://fastapi.tiangolo.com/](https://fastapi.tiangolo.com/)
-    
-    You can also run predictions using the interface below. Try it out!
+    You can run predictions using the interface below. Try it out!
 """
 )
 # Sidebar for user input
