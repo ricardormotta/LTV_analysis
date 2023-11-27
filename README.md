@@ -4,6 +4,12 @@
 
 This project, developed by [Ricardo Raspini Motta](linkedin.com/in/ricardormotta), focuses on Lifetime Value (LTV) analysis, encompassing churn analysis, LTV prediction, and customer segmentation.
 
+The project includes:
+- ML Orchestration using Kedro
+- CI/CD using Cloud Build in Google Cloud Platform
+- A Streamlit App to run predictions interactively
+
+
 ### Project Structure
 
 .
@@ -40,7 +46,6 @@ This project, developed by [Ricardo Raspini Motta](linkedin.com/in/ricardormotta
 │               ├── data_science
 │               └── feature_engineering
 └── prediction_app
-    └── pages
 
 ## Machine Learning Pipeline
 
@@ -101,4 +106,4 @@ kedro viz --env=local
 
 ## License
 
-This project is licensed under the [MIT License](link-to-license).
+This project is licensed under the [MIT License](https://opensource.org/license/mit/).
