@@ -107,8 +107,12 @@ You can also here visualize the pipeline with:
 kedro viz --env=local
 ```
 
+4. Set up your cloud environment.
 
-5.  *Extra*: Explore the notebooks in `ltv-ml-project/notebooks` for detailed analysis.
+This project runs in the Google Cloud Platform, and the CI/CD files can be seen at the `cloudbuild.yaml` and `dockerfile`. Those are being used to deploy this project.
+
+
+6.  *Extra*: Explore the notebooks in `ltv-ml-project/notebooks` for detailed analysis.
 
 ## Contributors
 
