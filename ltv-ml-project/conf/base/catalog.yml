@@ -5,19 +5,15 @@
 
 base:
   type: pandas.CSVDataSet
-  filepath: gs://ltv_analysis_data/data/01_raw/case_study_base_anon.csv
+  filepath: gs://ltv_analysis_data/data/01_raw/base.csv
   credentials: gcp_credentials
-  fs_args:
-    project: ltv-analysis
   load_args:
     sep: ","
 
 xs:
   type: pandas.CSVDataSet
-  filepath: gs://ltv_analysis_data/data/01_raw/case_study_xs_anon.csv
+  filepath: gs://ltv_analysis_data/data/01_raw/xs.csv
   credentials: gcp_credentials
-  fs_args:
-    project: ltv-analysis
   load_args:
     sep: ","
 
@@ -25,8 +21,6 @@ pre_processed_df:
   type: pandas.CSVDataSet
   filepath: gs://ltv_analysis_data/data/02_intermediate/pre_processed_df.csv
   credentials: gcp_credentials
-  fs_args:
-    project: ltv-analysis
   load_args:
     sep: ","
 
@@ -34,8 +28,6 @@ features_df:
   type: pandas.CSVDataSet
   filepath: gs://ltv_analysis_data/data/03_feature/features_df.csv
   credentials: gcp_credentials
-  fs_args:
-    project: ltv-analysis
   load_args:
     sep: ","
 
@@ -43,75 +35,77 @@ X:
   type: pandas.CSVDataSet
   filepath: gs://ltv_analysis_data/data/04_model_input/X.csv
   credentials: gcp_credentials
-  fs_args:
-    project: ltv-analysis
 
-y:
+y_churn:
   type: pandas.CSVDataSet
-  filepath: gs://ltv_analysis_data/data/04_model_input/y.csv
+  filepath: gs://ltv_analysis_data/data/04_model_input/y_churn.csv
   credentials: gcp_credentials
-  fs_args:
-    project: ltv-analysis
 
 X_train:
   type: pandas.CSVDataSet
   filepath: gs://ltv_analysis_data/data/04_model_input/X_train.csv
   credentials: gcp_credentials
-  fs_args:
-    project: ltv-analysis
 
 X_test:
   type: pandas.CSVDataSet
   filepath: gs://ltv_analysis_data/data/04_model_input/X_test.csv
   credentials: gcp_credentials
-  fs_args:
-    project: ltv-analysis
 
-y_train:
+y_train_churn:
   type: pandas.CSVDataSet
-  filepath: gs://ltv_analysis_data/data/04_model_input/y_train.csv
+  filepath: gs://ltv_analysis_data/data/04_model_input/y_train_churn.csv
   credentials: gcp_credentials
-  fs_args:
-    project: ltv-analysis
 
-y_test:
+y_test_churn:
   type: pandas.CSVDataSet
-  filepath: gs://ltv_analysis_data/data/04_model_input/y_test.csv
+  filepath: gs://ltv_analysis_data/data/04_model_input/y_test_churn.csv
   credentials: gcp_credentials
-  fs_args:
-    project: ltv-analysis
 
 CT:
   type: pickle.PickleDataSet
   filepath: gs://ltv_analysis_data/data/06_models/CT.pkl
   credentials: gcp_credentials
-  fs_args:
-    project: ltv-analysis
   backend: pickle
+
+y_ltv:
+  type: pandas.CSVDataSet
+  filepath: gs://ltv_analysis_data/data/04_model_input/y_ltv.csv
+  credentials: gcp_credentials
+
+
+y_train_ltv:
+  type: pandas.CSVDataSet
+  filepath: gs://ltv_analysis_data/data/04_model_input/y_train_ltv.csv
+  credentials: gcp_credentials
+
+y_test_ltv:
+  type: pandas.CSVDataSet
+  filepath: gs://ltv_analysis_data/data/04_model_input/y_test_ltv.csv
+  credentials: gcp_credentials
 
 
 survival_model:
   type: pickle.PickleDataSet
   filepath: gs://ltv_analysis_data/data/06_models/survival_model.pkl
   credentials: gcp_credentials
-  fs_args:
-    project: ltv-analysis
   backend: pickle
 
 trained_classifier_pipeline:
   type: pickle.PickleDataSet
   filepath: gs://ltv_analysis_data/data/06_models/trained_classifier_pipeline.pkl
   credentials: gcp_credentials
-  fs_args:
-    project: ltv-analysis
+  backend: pickle
+
+trained_ltv_pipeline:
+  type: pickle.PickleDataSet
+  filepath: gs://ltv_analysis_data/data/06_models/trained_ltv_pipeline.pkl
+  credentials: gcp_credentials
   backend: pickle
 
 trained_kfolds:
   type: pickle.PickleDataSet
   filepath: gs://ltv_analysis_data/data/06_models/trained_kfolds.pkl
   credentials: gcp_credentials
-  fs_args:
-    project: ltv-analysis
   backend: pickle
 
 
@@ -119,8 +113,6 @@ classification_metrics:
   type: matplotlib.MatplotlibWriter
   filepath: gs://ltv_analysis_data/data/08_reporting/classification_metrics.png
   credentials: gcp_credentials
-  fs_args:
-    project: ltv-analysis
   save_args:
     format: png
 
@@ -128,8 +120,6 @@ elbow_curve:
   type: matplotlib.MatplotlibWriter
   filepath: gs://ltv_analysis_data/data/08_reporting/elbow_curve.png
   credentials: gcp_credentials
-  fs_args:
-    project: ltv-analysis
   save_args:
     format: png
 
@@ -137,6 +127,4 @@ cluster_centroids:
   type: pickle.PickleDataSet
   filepath: gs://ltv_analysis_data/data/08_reporting/cluster_centroids.pkl
   credentials: gcp_credentials
-  fs_args:
-    project: ltv-analysis
   backend: pickle

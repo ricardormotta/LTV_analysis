@@ -30,4 +30,6 @@ def make_feature_engineering(df):
     df.loc[~df["is_churn"], "days_to_churn"] = (
         actual_date - pd.to_datetime(df.loc[~df["is_churn"], "customer_started_at"])
     ).dt.days
+    df.loc[:, "months_as_client"] = df.loc[:, "days_to_churn"] /30
+    df.loc[:, "LTV"] = (df.loc[:, "months_as_client"] * df["commission_base"]) + df["commission_xs"].fillna(0)
     return df

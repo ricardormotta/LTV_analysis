@@ -9,7 +9,7 @@ from .nodes import (
     split_train_test,
     create_column_transformer,
     train_survival_model,
-    train_classification_model,
+    train_xgb,
     train_clustering_model,
 )
 
@@ -24,18 +24,18 @@ def create_pipeline(**kwargs) -> Pipeline:
                     "params:cat_cols",
                     "params:num_cols",
                     "params:ohe_cols",
-                    "params:target",
+                    "params:target_churn",
                 ],
-                outputs=["X", "y"],
+                outputs=["X", "y_churn"],
             ),
             node(
                 func=split_train_test,
-                inputs=["X", "y", "params:train_test_ratio", "params:SEED"],
-                outputs=["X_train", "X_test", "y_train", "y_test"],
+                inputs=["X", "y_churn", "params:train_test_ratio", "params:SEED"],
+                outputs=["X_train", "X_test", "y_train_churn", "y_test_churn"],
             ),
             node(
                 func=train_survival_model,
-                inputs=["X", "y", "params:cat_cols"],
+                inputs=["X", "y_churn", "params:cat_cols"],
                 outputs="survival_model",
             ),
             node(
@@ -47,14 +47,42 @@ def create_pipeline(**kwargs) -> Pipeline:
                 outputs="CT",
             ),
             node(
-                func=train_classification_model,
+                func=train_xgb,
                 inputs=[
                     "X_train",
-                    "y_train",
+                    "y_train_churn",
                     "CT",
                     "params:xgb_parameters",
+                    "params:problem_type_classification"
                 ],
                 outputs="trained_classifier_pipeline",
+            ),
+            node(
+                func=split_X_y,
+                inputs=[
+                    "features_df",
+                    "params:cat_cols",
+                    "params:num_cols",
+                    "params:ohe_cols",
+                    "params:target_ltv",
+                ],
+                outputs=["X_ltv", "y_ltv"],
+            ),
+            node(
+                func=split_train_test,
+                inputs=["X", "y_ltv", "params:train_test_ratio", "params:SEED"],
+                outputs=["X_train_ltv", "X_test_ltv", "y_train_ltv", "y_test_ltv"],
+            ),
+                        node(
+            func=train_xgb,
+                inputs=[
+                    "X_train",
+                    "y_train_churn",
+                    "CT",
+                    "params:xgb_parameters",
+                    "params:problem_type_regression"
+                ],
+                outputs="trained_ltv_pipeline",
             ),
             node(
                 func=train_clustering_model,

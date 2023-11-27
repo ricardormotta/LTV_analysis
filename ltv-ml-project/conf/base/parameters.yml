@@ -3,6 +3,8 @@ datetime_cols:
   - customer_started_at
 
 num_cols: 
+  - commission_base
+  - commission_xs
   - days_to_churn
   - product_x
   - product_y
@@ -16,7 +18,8 @@ cat_cols:
 ohe_cols:
   - is_xs
 
-target: is_churn
+target_churn: is_churn
+target_ltv: months_as_client
 
 train_test_ratio: 0.2
 SEED: 42
@@ -35,3 +38,6 @@ top_n_features: 5
 
 max_clusters: 10
 n_splits: 5
+
+problem_type_classification: Classification
+problem_type_regression: Regression

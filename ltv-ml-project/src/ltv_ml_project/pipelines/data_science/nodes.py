@@ -3,7 +3,7 @@ This is a boilerplate pipeline 'data_science'
 generated using Kedro 0.18.14
 """
 import pandas as pd
-from xgboost import XGBClassifier
+from xgboost import XGBClassifier, XGBRegressor
 import lifelines
 
 import seaborn as sns
@@ -68,8 +68,12 @@ def create_column_transformer(cat_cols, num_cols):
     return CT
 
 
-def train_classification_model(X_train, y_train, CT, hyper_parameters):
-    xgb = XGBClassifier()
+def train_xgb(X_train, y_train, CT, hyper_parameters, problem_type="Classification"):
+    if problem_type =="Classification":
+        xgb = XGBClassifier()
+    else:
+        xgb = XGBRegressor()
+        X_train.loc[:,"days_to_churn"]=0
     grid_search = GridSearchCV(xgb, hyper_parameters, n_jobs=-1, verbose=2)
     pipe = Pipeline([("CT", CT), ("model", grid_search)])
     pipe.fit(X_train, y_train)
