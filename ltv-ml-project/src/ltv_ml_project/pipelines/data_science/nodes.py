@@ -69,11 +69,11 @@ def create_column_transformer(cat_cols, num_cols):
 
 
 def train_xgb(X_train, y_train, CT, hyper_parameters, problem_type="Classification"):
-    if problem_type =="Classification":
+    if problem_type == "Classification":
         xgb = XGBClassifier()
     else:
         xgb = XGBRegressor()
-        X_train.loc[:,"days_to_churn"]=0
+        X_train.loc[:, "days_to_churn"] = 0
     grid_search = GridSearchCV(xgb, hyper_parameters, n_jobs=-1, verbose=2)
     pipe = Pipeline([("CT", CT), ("model", grid_search)])
     pipe.fit(X_train, y_train)

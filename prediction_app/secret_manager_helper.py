@@ -1,7 +1,7 @@
-
 from google.cloud import secretmanager
 import json
 from start_kedro_session import get_kedro_project_path
+
 
 def get_secret_as_json(project_id, secret_id, saving_path):
     # Initialize the Secret Manager client
@@ -20,9 +20,7 @@ def get_secret_as_json(project_id, secret_id, saving_path):
     secret_data = json.loads(payload)
 
     # Save the secret as a JSON file
-    with open(saving_path, 'w') as json_file:
+    with open(saving_path, "w") as json_file:
         json.dump(secret_data, json_file, indent=4)
-    
-    return f"Secret saved as '{saving_path}'"
-    
 
+    return f"Secret saved as '{saving_path}'"

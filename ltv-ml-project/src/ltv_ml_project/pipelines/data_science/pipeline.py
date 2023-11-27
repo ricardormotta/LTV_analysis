@@ -53,7 +53,7 @@ def create_pipeline(**kwargs) -> Pipeline:
                     "y_train_churn",
                     "CT",
                     "params:xgb_parameters",
-                    "params:problem_type_classification"
+                    "params:problem_type_classification",
                 ],
                 outputs="trained_classifier_pipeline",
             ),
@@ -73,14 +73,14 @@ def create_pipeline(**kwargs) -> Pipeline:
                 inputs=["X", "y_ltv", "params:train_test_ratio", "params:SEED"],
                 outputs=["X_train_ltv", "X_test_ltv", "y_train_ltv", "y_test_ltv"],
             ),
-                        node(
-            func=train_xgb,
+            node(
+                func=train_xgb,
                 inputs=[
                     "X_train",
                     "y_train_churn",
                     "CT",
                     "params:xgb_parameters",
-                    "params:problem_type_regression"
+                    "params:problem_type_regression",
                 ],
                 outputs="trained_ltv_pipeline",
             ),
