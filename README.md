@@ -59,6 +59,10 @@ To run this visualization, run the command `kedro viz` when inside the folder `l
 
 A prediction app has been developed using Streamlit for user-friendly interaction. Access the app [here](https://ltv-analysis-66dlatsw4q-uc.a.run.app/).
 
+A screenshot of the app:
+![Streamlit](docs/streamlit.png)
+
+
 ## Exploratory Data Analysis (EDA)
 
 The exploratory data analysis was conducted in Jupyter Notebooks, available in the `ltv-ml-project/notebooks` directory. There are also notebooks using when developing the models.
