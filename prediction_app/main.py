@@ -18,6 +18,7 @@ token_saved = get_secret_as_json(project_id, secret_id, token_path)
 
 catalog = get_kedro_catalog()
 classifier = catalog.load("trained_classifier_pipeline")
+regressor = catalog.load("trained_ltv_pipeline")
 survival_model = catalog.load("survival_model")
 survival_threshold = catalog.load("params:survival_threshold")
 train_cols_surv_model = survival_model.variance_matrix_.columns
@@ -62,6 +63,7 @@ op_system = st.selectbox(
 )
 base_product = st.selectbox("Base Product", ("product_a", "product_b", "product_c"))
 base_commission = st.number_input("Base commission", value=0)
+xs_commission = st.number_input("Cross Selling commission", value=0)
 client_since_days = st.number_input("Client since (days)", value=0)
 product_x = st.select_slider(
     "Number of purchases of Product X", range(0, 6, 1), value=0
@@ -76,7 +78,8 @@ inputs = {
     "age_bucket": [age],
     "operating_system": [op_system],
     "product": [base_product],
-    "commission": [base_commission],
+    "commission_base": [base_commission],
+    "commission_xs": [xs_commission],
     "product_x": [product_x],
     "product_y": [product_y],
     "is_xs": [is_xs],
@@ -96,12 +99,15 @@ if st.button("Run Prediction"):
     )
     cluster = clusterer.predict(data)[0]
     cluster_features = cluster_feature_importances[cluster]
+    data.loc[:,"days_to_churn"] = 0
+    predicted_months = regressor.predict(data)[0]
 
     will_churn = "Yes" if bool(prediction[0]) else "No"
     st.header("Models' outputs:")
     st.write(f"\tWill this client churn? {will_churn}")
-    st.write(f"\tPredicted probability of churn: {proba}")
-    st.write(f"\tPredicted days to churn: {days_to_churn}")
+    st.write(f"\tPredicted probability of churn: {round(proba,5)}")
+    st.write(f"\tPredicted days to churn according to the survival model: {round(days_to_churn,3)}")
+    st.write(f"\tPredicted retention months according to the LTV model: {round(predicted_months,3)}")
     st.write(f"\tThis client was assigned to cluster {cluster}")
     st.write(f"\tThis cluster has the following most important features:")
     st.dataframe(cluster_features)

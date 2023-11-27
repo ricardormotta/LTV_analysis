@@ -19,6 +19,7 @@ def start_kedro_context():
     session = KedroSession.create(
         package_name=kedro_project_name,
         project_path=project_path,
+        env="base"
     )
 
     # Load the Kedro project context
