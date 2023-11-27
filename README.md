@@ -75,7 +75,10 @@ The exploratory data analysis was conducted in Jupyter Notebooks, available in t
 To replicate this project locally, follow these steps:
 
 1. Clone the repository:
+
+```console
 git clone https://github.com/your-username/ltv-analysis-project.git
+```
 
 2. Set up the environment:
 
