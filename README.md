@@ -10,8 +10,13 @@ The project includes:
 - A Streamlit App to run predictions interactively
 
 
-### Project Structure
+## Project Structure
 
+The directory structure shows two main folders:
+- `ltv-ml-project`: Contains the whole data pipeline, which consists of a kedro project. It also include the notebooks used in the data exploration and analysis. Read more in (here)[https://docs.kedro.org/en/0.18.3/faq/architecture_overview.html]
+- `prediction_app`: Contains the code to deploy the models in a Streamlit web app, that can enable end-users to run predictions with different inputs.   The app is being deployed (here)[https://ltv-analysis-66dlatsw4q-uc.a.run.app/]. 
+
+The sub-fol
 
 ```
 .
@@ -58,6 +63,11 @@ The machine learning pipeline was orchestrated using Kedro. The codebase for the
 
 To run this visualization, run the command `kedro viz` when inside the folder `ltv-ml-project`. 
 
+This pipeline orchestrate the whole data science code. It includes the data pre-processing, feature engineering, the training of the models and the calculation of the metrics. All data is being managed by the catalog structure, and the linkage between the datasources and the code can be seen in `conf/base/catalog.yml`. 
+
+All data is being saved on the Google Cloud Storage. The training of the models is being run locally, but in the future the plan is to set up a VM to do that.
+
+
 ## Prediction App
 
 A prediction app has been developed using Streamlit for user-friendly interaction. Access the app [here](https://ltv-analysis-66dlatsw4q-uc.a.run.app/).
@@ -65,12 +75,22 @@ A prediction app has been developed using Streamlit for user-friendly interactio
 A screenshot of the app:
 ![Streamlit](docs/streamlit.png)
 
+To run the app locally, run in the project root directory:
+```console
+streamlit run /prediction_app/main.py
+```
+
+The app should start locally. The same command can be seen in the end of the `Dockerfile`.
+
+## Cloud usage
+
+The cloud provider for this project is the Google Cloud Platform. Currently the app is being deployed to a Cloud Run instance (read more (here)[https://cloud.google.com/run?hl=en]). The CI/CD pipeline uses Cloud Build (see `cloudbuild.yaml` file, and read more (here)[https://cloud.google.com/build?hl=en]). Every commit in the main branch re-starts the deployment of the model. Next features will include the training of the model in a (Compute Engine)[https://cloud.google.com/compute?hl=en] virtual machine. All data and models are being saved in the (Cloud Storage)[https://cloud.google.com/storage?hl=en], and the secrets are being managed by the (Secret Manager)[https://cloud.google.com/secret-manager].
 
 ## Exploratory Data Analysis (EDA)
 
 The exploratory data analysis was conducted in Jupyter Notebooks, available in the `ltv-ml-project/notebooks` directory. There are also notebooks using when developing the models.
 
-### Usage
+## Usage
 
 To replicate this project locally, follow these steps:
 
@@ -107,12 +127,20 @@ You can also here visualize the pipeline with:
 kedro viz --env=local
 ```
 
-4. Set up your cloud environment.
+5. Initiate the prediction app:
 
-This project runs in the Google Cloud Platform, and the CI/CD files can be seen at the `cloudbuild.yaml` and `dockerfile`. Those are being used to deploy this project.
+Navigate back to the root directory and then run:
+
+```console
+streamlit run /prediction_app/main.py
+```
+
+6. Set up your cloud environment.
+
+This project runs in the Google Cloud Platform, and the CI/CD files can be seen at the `cloudbuild.yaml` and `dockerfile`. Those are being used to deploy this project. You can set up your own project in the cloud and use them as example.
 
 
-6.  *Extra*: Explore the notebooks in `ltv-ml-project/notebooks` for detailed analysis.
+7.  *Extra*: Explore the notebooks in `ltv-ml-project/notebooks` for detailed analysis.
 
 ## Contributors
 

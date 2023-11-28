@@ -77,7 +77,7 @@ def create_pipeline(**kwargs) -> Pipeline:
                 func=train_xgb,
                 inputs=[
                     "X_train",
-                    "y_train_churn",
+                    "y_train_ltv",
                     "CT",
                     "params:xgb_parameters",
                     "params:problem_type_regression",
