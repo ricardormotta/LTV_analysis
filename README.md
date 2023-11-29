@@ -13,10 +13,9 @@ The project includes:
 ## Project Structure
 
 The directory structure shows two main folders:
-- `ltv-ml-project`: Contains the whole data pipeline, which consists of a kedro project. It also include the notebooks used in the data exploration and analysis. Read more in (here)[https://docs.kedro.org/en/0.18.3/faq/architecture_overview.html]
-- `prediction_app`: Contains the code to deploy the models in a Streamlit web app, that can enable end-users to run predictions with different inputs.   The app is being deployed (here)[https://ltv-analysis-66dlatsw4q-uc.a.run.app/]. 
+* `ltv-ml-project`: Contains the whole data pipeline, which consists of a kedro project. It also include the notebooks used in the data exploration and analysis. Read more in (here)[https://docs.kedro.org/en/0.18.3/faq/architecture_overview.html]
+* `prediction_app`: Contains the code to deploy the models in a Streamlit web app, that can enable end-users to run predictions with different inputs.   The app is being deployed (here)[https://ltv-analysis-66dlatsw4q-uc.a.run.app/]. 
 
-The sub-fol
 
 ```
 .
@@ -54,6 +53,25 @@ The sub-fol
 │               └── feature_engineering
 └── prediction_app
 ```
+
+
+The sub-folders in `ltv-ml-project` follow the kedro template structure. The more important are:
+* conf:
+    * Here are the data paths and parameters declared.
+    * The `catalog.yml` describes the data sources.
+    * The `parameters.yml` describes the pipeline parameters.
+* data:
+    * This folder is used locally to store data.
+* notebooks:
+    * Contains the notebooks used in the experiments
+* src:
+    * Contains the code itself.
+    * The code is splitted into different pipelines: `compute_metrics`, `data_preprocessing`, `data_science`, `feature_engineering`. 
+    * Inside the subfolder of each pipeline (`src/ltv_ml_project/data_science`, for example), there are the `nodes.py` and `pipeline.py`
+    * The `nodes.py` files contain the functions that do the processing in the data
+    * The `pipeline.py` files link those nodes with the data sources and parameters declared in the `catalog.yml` and `parameters.yml`
+
+The orchestration is then made by kedro itself.
 
 ## Machine Learning Pipeline
 
