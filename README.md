@@ -13,8 +13,8 @@ The project includes:
 ## Project Structure
 
 The directory structure shows two main folders:
-* `ltv-ml-project`: Contains the whole data pipeline, which consists of a kedro project. It also include the notebooks used in the data exploration and analysis. Read more in (here)[https://docs.kedro.org/en/0.18.3/faq/architecture_overview.html]
-* `prediction_app`: Contains the code to deploy the models in a Streamlit web app, that can enable end-users to run predictions with different inputs.   The app is being deployed (here)[https://ltv-analysis-66dlatsw4q-uc.a.run.app/]. 
+* `ltv-ml-project`: Contains the whole data pipeline, which consists of a kedro project. It also include the notebooks used in the data exploration and analysis. Read more in [here](https://docs.kedro.org/en/0.18.3/faq/architecture_overview.html)
+* `prediction_app`: Contains the code to deploy the models in a Streamlit web app, that can enable end-users to run predictions with different inputs.   The app is being deployed [here](https://ltv-analysis-66dlatsw4q-uc.a.run.app/). 
 
 
 ```
@@ -102,7 +102,7 @@ The app should start locally. The same command can be seen in the end of the `Do
 
 ## Cloud usage
 
-The cloud provider for this project is the Google Cloud Platform. Currently the app is being deployed to a Cloud Run instance (read more (here)[https://cloud.google.com/run?hl=en]). The CI/CD pipeline uses Cloud Build (see `cloudbuild.yaml` file, and read more (here)[https://cloud.google.com/build?hl=en]). Every commit in the main branch re-starts the deployment of the model. Next features will include the training of the model in a (Compute Engine)[https://cloud.google.com/compute?hl=en] virtual machine. All data and models are being saved in the (Cloud Storage)[https://cloud.google.com/storage?hl=en], and the secrets are being managed by the (Secret Manager)[https://cloud.google.com/secret-manager].
+The cloud provider for this project is the Google Cloud Platform. Currently the app is being deployed to a Cloud Run instance (read more [here](https://cloud.google.com/run?hl=en)). The CI/CD pipeline uses Cloud Build (see `cloudbuild.yaml` file, and read more [here](https://cloud.google.com/build?hl=en)). Every commit in the main branch re-starts the deployment of the model. Next features will include the training of the model in a [Compute Engine](https://cloud.google.com/compute?hl=en) virtual machine. All data and models are being saved in the (Cloud Storage)[https://cloud.google.com/storage?hl=en], and the secrets are being managed by the [Secret Manager](https://cloud.google.com/secret-manager).
 
 ## Exploratory Data Analysis (EDA)
 
