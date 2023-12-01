@@ -2,6 +2,9 @@ import os
 import sys
 import pandas as pd
 import streamlit as st
+import logging
+
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 sys.path.append("..")
 from start_kedro_session import get_kedro_catalog, get_kedro_project_path
@@ -79,6 +82,7 @@ inputs = {
 }
 # Button to trigger prediction
 if st.button("Run Prediction"):
+    logging.info(f'Running prediction. Data: \n\t{inputs}')
     if product_x + product_y > 0:
         is_xs = True
     data = pd.DataFrame.from_dict(inputs, orient="index").T
